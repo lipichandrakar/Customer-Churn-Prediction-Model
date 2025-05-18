@@ -1,88 +1,71 @@
-📊 Telco Customer Churn Prediction
-This project analyzes customer data to predict churn (whether a customer will leave the service) using machine learning models. The dataset used is the Telco Customer Churn dataset.
+# 📊 Telco Customer Churn Prediction
 
-📁 Dataset
-The dataset Telco-Customer-Churn.csv contains customer demographics and service usage details. The target variable is Churn, indicating whether the customer has discontinued the service.
+This project analyzes customer data to predict churn (whether a customer will leave the service) using machine learning models. The dataset used is the **Telco Customer Churn** dataset.
 
-⚙️ Steps Performed
-1. Import Libraries
-Used key Python libraries including:
+---
 
-pandas, numpy for data handling
+## 📁 Dataset
 
-matplotlib, seaborn for visualization
+The dataset `Telco-Customer-Churn.csv` contains customer demographics and service usage details.  
+The target variable is **`Churn`**, indicating whether the customer has discontinued the service.
 
-sklearn for preprocessing, modeling, and evaluation
+---
 
-2. Load & Preview Data
-Loaded the dataset using pandas
+## ⚙️ Steps Performed
 
-Displayed the first few rows for a basic understanding
+### 1. **Import Libraries**
+Used essential Python libraries:
+- `pandas`, `numpy` for data handling
+- `matplotlib`, `seaborn` for visualization
+- `scikit-learn` for preprocessing, modeling, and evaluation
 
-3. Data Cleaning
-Converted TotalCharges to numeric
+### 2. **Load & Preview Data**
+- Loaded dataset using `pandas`
+- Displayed sample data using `.head()`
 
-Handled missing values by replacing them with 0
+### 3. **Data Cleaning**
+- Converted `TotalCharges` to numeric using `pd.to_numeric`
+- Filled missing values with `0`
 
-4. Encoding
-Applied LabelEncoder to convert categorical variables to numeric, excluding customerID
+### 4. **Encoding**
+- Applied `LabelEncoder` to convert categorical features to numeric
+- Skipped the `customerID` column
 
-5. Train-Test Split
-Features (X) and labels (y) were separated
+### 5. **Train-Test Split**
+- Separated features (`X`) and target (`y`)
+- Used `train_test_split` with 80/20 split and `stratify` on `y`
 
-Data split into 80% training and 20% testing
+### 6. **Feature Scaling**
+- Scaled numerical columns: `tenure`, `MonthlyCharges`, and `TotalCharges`
+- Used `StandardScaler` for normalization
 
-6. Feature Scaling
-Scaled numerical columns (tenure, MonthlyCharges, TotalCharges) using StandardScaler
+### 7. **Model Training**
+Trained two machine learning models:
+- **Logistic Regression**
+- **Random Forest Classifier**
 
-7. Model Training
-Trained two models:
+### 8. **Model Evaluation**
+Used `accuracy_score` and `classification_report`:
+- **Logistic Regression Accuracy**: ~80%
+- **Random Forest Accuracy**: ~79%
 
-Logistic Regression
+### 9. **Hyperparameter Tuning**
+Performed tuning with `GridSearchCV`:
+- Best Logistic Regression params: `C=1`, `solver='liblinear'`
+- Best Random Forest params: `n_estimators=100`, `max_depth=10`
 
-Random Forest Classifier
+### 10. **Visualization**
+- **Churn Distribution** using `sns.countplot`
+- **Monthly Charges by Churn** using `sns.boxplot`
 
-8. Model Evaluation
-Evaluated using accuracy and classification report
+### 11. **Result Export**
+- Saved predictions to `churn_predictions.csv`
 
-Logistic Regression Accuracy: ~80%
+---
 
-Random Forest Accuracy: ~79%
+## 📝 Requirements
 
-9. Hyperparameter Tuning
-Used GridSearchCV to find best parameters for both models:
+Install required libraries with:
 
-Logistic Regression: C=1, solver='liblinear'
-
-Random Forest: n_estimators=100, max_depth=10
-
-10. Visualization
-Plotted churn distribution using countplot
-
-Compared MonthlyCharges across churned vs. retained customers using boxplot
-
-11. Result Export
-Exported final predictions of the Random Forest model to churn_predictions.csv
-
-📝 Requirements
-Python 3.x
-
-pandas
-
-numpy
-
-matplotlib
-
-seaborn
-
-scikit-learn
-
-Install with:
-
-bash
-Copy
-Edit
+```bash
 pip install pandas numpy matplotlib seaborn scikit-learn
-📌 Output Files
-churn_predictions.csv: Contains actual and predicted values for test data.
-
